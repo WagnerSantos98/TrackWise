@@ -8,6 +8,10 @@ const driver = new Schema({
     telefone: String,
     cnh: String,
     veiculo: String,
+    dataCadastro: {
+        type: Date,
+        default: Date.now,
+    }
 });
 
 module.exports = mongoose.model('Driver', driver);
