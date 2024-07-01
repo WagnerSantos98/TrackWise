@@ -1,19 +1,11 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const deliveryRoutes = require('./src/routes/deliveryRoutes');
-const driverRoutes = require('./src/routes/driverRoutes');
-require('dotenv').config();
-
+const morgan = require('morgan');
 const app = express();
 
-app.use(bodyParser.json());
-app.use(cors());
+app.use(morgan('dev'));
+app.set('port', 8000);
 
-app.use('/api/deliveries', deliveryRoutes);
-app.use('/api/drivers', driverRoutes);
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.listen(app.get('port'), () => {
+    console.log(`Servidor WS escutando na porta ${app.get('port')}`);
 });
+
