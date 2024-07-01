@@ -6,4 +6,7 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 
-mongoose.connect(URI);
+mongoose
+    .connect(URI)
+    .then(() => console.log('DB is Up!'))
+    .catch(() => console.log('err'));
