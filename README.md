@@ -54,4 +54,9 @@ O Sistena de Gestão de Transportadoras é uma aplicação web desenvolvida para
 - Docker (opcional, para deploy)
 - Git 
 
+## Configurações do Ambiente de Desenvolvimento
 
+1. **Clone o repositório:**
+```bash
+git clone https://github.com/WagnerSantos98/TrackWise.git
+cd TrackWise```
