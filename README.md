@@ -62,3 +62,32 @@ git clone https://github.com/WagnerSantos98/TrackWise.git
 cd TrackWise
 ```
 
+2. **Instale as dependências do back-end:**
+```bash
+cd ws
+npm install
+```
+
+3. **Instale as dependências do front-end:**
+```bash
+cd web
+npm install
+```
+
+4. **Configure as variáveis de ambiente:**
+
+5. **Inicie o servidor back-end:**
+```bash
+cd ws
+npm start
+```
+
+6. **Inicie o servidor front-end:**
+```bash
+cd web
+npm start
+```
+
+## Endpoints da API
+
+- GET '/api/veiculos' - Lista todos os veículos
