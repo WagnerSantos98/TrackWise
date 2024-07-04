@@ -92,3 +92,9 @@ npm start
 
 **Veículos**
 - GET '/api/veiculos' - Lista todos os veículos
+
+## Contato
+
+- Autor: Wagner Santos de Jesus
+- Email: wagner.jesus98@outlook.com
+- LinkedIn: https://www.linkedin.com/in/wagnersjesus/
