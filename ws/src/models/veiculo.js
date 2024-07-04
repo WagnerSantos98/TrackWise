@@ -11,6 +11,10 @@ const veiculo = new Schema({
     capacidadeCarga: Number,
     status: String,
     statusManutencao: String,
+    dataCadastro: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 module.exports = mongoose.model('Veiculo', veiculo);
