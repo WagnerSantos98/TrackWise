@@ -9,7 +9,12 @@ const veiculo = new Schema({
     cor: String,
     categoria: String,
     capacidadeCarga: Number,
-    status: String,
+    status: {
+        type: String,
+        required: true,
+        enum: ['A', 'I', 'E'],
+        default: 'A'
+    },
     statusManutencao: String,
     dataCadastro: {
         type: Date,

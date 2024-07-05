@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const rota = new Schema({
-    veiculoId: {
+    veiculoId: [{
         type: mongoose.Types.ObjectId,
         ref: 'Veiculo',
         required: true
-    },
-    motoristaId: {
+    }],
+    motoristaId: [{
         type: mongoose.Types.ObjectId,
         ref: 'Motorista',
         required: true
-    },
+    }],
     origem: String,
     destino: String,
     distancia: Number,
