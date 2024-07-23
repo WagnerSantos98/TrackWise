@@ -1,3 +1,4 @@
+// Conexão com banco de dados e validação
 const mongoose = require('mongoose');
 const URI = 'mongodb+srv://wagnersjesus98:ogEfWgyyxIMx9mWL@clusterdev.r20aild.mongodb.net/track-wise?retryWrites=true&w=majority';
 
