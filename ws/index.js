@@ -22,6 +22,8 @@ app.use((req, res, next) => {
     next();
 });
 
+
+//Iniciar o server
 app.listen(app.get('port'), () => {
     console.log(`Ws Escutando na porta ${app.get('port')}`);
 });
