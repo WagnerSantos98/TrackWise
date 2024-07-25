@@ -13,4 +13,13 @@ router.post('/', async (req, res) => {
     }
 });
 
+//Rota de listagem - método GET
+router.get('/veiculos/veiculoId', async (req, res) => {
+    try{
+        const { veiculoId } = req.params.veiculoId;
+    }catch(err){
+        res.json({error: true, message: err.message});
+    }
+});
+
 module.exports = router;
