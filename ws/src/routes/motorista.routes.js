@@ -6,8 +6,7 @@ router.post('/', async (req, res) => {
     try{
 
         const motorista = await new Motorista(req.body).save();
-
-
+        
         res.json({ motorista });
     }catch(err){
         res.json({ error: true, message: err.message });
