@@ -14,7 +14,7 @@ app.set('port', 8000);
 
 //Rotas
 app.use('/empresa', require('./src/routes/empresa.routes'));
-app.use('/veiculo', require('./src/routes/veiculo.routes'));
+//app.use('/veiculo', require('./src/routes/veiculo.routes'));
 
 // Lidar com erros de CORS
 app.use((req, res, next) => {
