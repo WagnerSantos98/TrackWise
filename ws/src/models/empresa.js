@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const empresa = new Schema({
    nome: String,
+   contato: String,
    foto: String,
    capa: String,
    email: String,
@@ -10,11 +11,11 @@ const empresa = new Schema({
    cnpj: String,
    endereco: {
         rua: String,
+        bairro: String,
         cidade: String,
         uf: String,
         cep: String,
         numero: String,
-        pais: String,
    },
    dataCadastro: {
     type: Date,
