@@ -2,11 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const cliente = new Schema({
-    nome: String,
-    cpf: String,
-    rg: String,
+    contato:{
+        nome: String,
+        email: String,
+        celular: String,
+        cpf: String,
+        rg: String,
+    },
     dataNascimento: Date,
-    email: String,
     senha: String,
     endereco: {
         rua: String,
@@ -17,7 +20,6 @@ const cliente = new Schema({
         cep: String,
         complemento: String,
     },
-    contato: String,
     status:{
         type: String,
         required: true,
