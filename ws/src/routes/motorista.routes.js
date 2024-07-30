@@ -1,3 +1,66 @@
 const express = require('express');
-const routes = express.Router();
+const router = express.Router();
 const Motorista = require('../models/motorista');
+const EmpresaMotorista = require('../models/relationship/empresaMotorista');
+
+router.post('/', async (req, res) => {
+    try{
+        const { motorista, empresaId } = req.body;
+    let newMotorista = null;
+
+    //Verificar se o motorista já está cadastrado
+    const existentMotorista =  await Motorista.findOne({
+        $or: [
+            { nome: motorista.nome },
+            { cpf: motorista.cpf },
+        ]
+    });
+
+    //Caso motorista não esteja cadastrado
+    if(!existentMotorista){
+        newMotorista = new Motorista({
+            ...motorista,
+        });
+        await newMotorista.save();
+    }
+
+    //Relacionamento motorista/empresa
+    const motoristaId = existentMotorista? existentMotorista._id : newMotorista._id;
+
+    //Verifica se existe relacionamento com a empresa
+    const existentRelationship = await EmpresaMotorista.findOne({
+        empresaId,
+        motoristaId,
+        status: { $ne: 'E' }
+    });
+
+    //Se não está vinculado
+    if(!existentRelationship){
+        await new EmpresaMotorista({
+            empresaId,
+            motoristaId,
+            status: 'A' //Supondo que o status 'A' significa 'Ativo'
+        }).save();
+    }else if(existentRelationship.status !== 'A'){
+        //Se já existir  um vinculo/empresa e não está ativo, atualizar para 'A'
+        await EmpresaMotorista.findOneAndUpdate(
+            {
+                empresaId,
+                motoristaId,
+            },
+            { status: 'A' }
+        );
+    }
+
+    if(existentMotorista && existentRelationship){
+        res.json({ error: true, message: 'Motorista já cadastrado'});
+    }else{
+        res.json({ error: false })
+    }
+    }catch(err){
+        res.json({ error: true, message: err.message });
+    }
+    
+});
+
+module.exports = router;

@@ -8,17 +8,21 @@ const motorista = new Schema({
     disponibilidade: Boolean,
     endereco: {
         rua: String,
-        numero: String,
+        bairro: String,
         cidade: String,
         uf: String,
         cep: String,
-        bairro: String,
+        numero: String,
     },
-    telefone: String,
+    contato: String,
     email: String,
-    placa: String,
     historicoViagens: Array,
-    status: String,
+    status: {
+        type: String,
+        required: true,
+        enum: ['A', 'I', 'E'],
+        default: 'A'
+    },
     dataCadastro: {
         type: Date,
         default: Date.now
