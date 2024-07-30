@@ -18,9 +18,15 @@ const cliente = new Schema({
         complemento: String,
     },
     contato: String,
+    status:{
+        type: String,
+        required: true,
+        enum: ['A', 'I'],
+        default: 'A'
+    },
     dataCadastro:{
         type: Date,
-        default: Date.now(),
+        default: Date.now()
     }
 });
 
