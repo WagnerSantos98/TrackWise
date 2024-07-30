@@ -29,17 +29,17 @@ router.get('/veiculos/:empresaId', async (req, res) => {
     }
 });
 
-router.get('/id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try{
         const empresa = await Empresa.findById(req.params.id).select('capa nome endereco.cidade contato');
 
-        const horarios = await Horario.find({
+        /*const horarios = await Horario.find({
             empresaId: req.params.id,
         }).select('dias inicio fim');
 
-        const isOpened = util.isOpened(horarios);
+        const isOpened = util.isOpened(horarios);*/
 
-        res.json({ error: false, empresa: { ...empresa._doc, isOpened } });
+        res.json({ error: false, empresa: { ...empresa._doc } });
     }catch(err){
         res.json({ error: true, message: err.message });
     }
