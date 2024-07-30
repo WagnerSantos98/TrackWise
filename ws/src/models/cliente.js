@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
 
-const cliente = new Schema({
-    contato:{
-        nome: String,
-        email: String,
-        celular: String,
-        cpf: String,
-        rg: String,
-    },
+const clienteSchema = new Schema({
+    nome: String,
+    email: String,
+    celular: String,
+    cpf: String,
+    rg: String,
     dataNascimento: Date,
     senha: String,
     endereco: {
@@ -20,16 +19,32 @@ const cliente = new Schema({
         cep: String,
         complemento: String,
     },
-    status:{
+    status: {
         type: String,
         required: true,
         enum: ['A', 'I'],
         default: 'A'
     },
-    dataCadastro:{
+    dataCadastro: {
         type: Date,
-        default: Date.now()
+        default: Date.now
     }
 });
 
-module.exports = mongoose.model('Cliente', cliente);
+// Middleware para criptografar a senha antes de salvar
+clienteSchema.pre('save', async function(next) {
+    if (this.isModified('senha') || this.isNew) {
+        try {
+            const salt = await bcrypt.genSalt(10);
+            this.senha = await bcrypt.hash(this.senha, salt);
+            next();
+        } catch (err) {
+            next(err);
+        }
+    } else {
+        return next();
+    }
+});
+
+
+module.exports = mongoose.model('Cliente', clienteSchema);
