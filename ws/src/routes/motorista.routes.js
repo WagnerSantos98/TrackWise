@@ -6,7 +6,7 @@ const EmpresaMotorista = require('../models/relationship/empresaMotorista');
 router.post('/', async (req, res) => {
     try{
         const { motorista, empresaId } = req.body;
-    let newMotorista = null;
+        let newMotorista = null;
 
     //Verificar se o motorista já está cadastrado
     const existentMotorista =  await Motorista.findOne({
@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
         await new EmpresaMotorista({
             empresaId,
             motoristaId,
-            status: 'A' //Supondo que o status 'A' significa 'Ativo'
+            status: 'A' //A = Ativo, I = Inativo, E = Excluído
         }).save();
     }else if(existentRelationship.status !== 'A'){
         //Se já existir  um vinculo/empresa e não está ativo, atualizar para 'A'
@@ -55,7 +55,7 @@ router.post('/', async (req, res) => {
     if(existentMotorista && existentRelationship){
         res.json({ error: true, message: 'Motorista já cadastrado'});
     }else{
-        res.json({ error: false })
+        res.json({ error: false });
     }
     }catch(err){
         res.json({ error: true, message: err.message });

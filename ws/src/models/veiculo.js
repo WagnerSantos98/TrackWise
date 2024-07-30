@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const veiculo = new Schema({
     placa: String,
+    renavam: String,
     marca: String,
     modelo: String,
     ano: Number,
