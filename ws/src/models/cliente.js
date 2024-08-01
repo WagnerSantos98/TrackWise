@@ -18,6 +18,8 @@ const clienteSchema = new Schema({
         uf: String,
         cep: String,
         complemento: String,
+        latitude: Number,
+        longitude: Number,
     },
     status: {
         type: String,
