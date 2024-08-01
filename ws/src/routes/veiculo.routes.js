@@ -64,6 +64,7 @@ router.post('/', async (req, res) => {
     }
 });
 
+//Rota de retorno de informações do veículo com vínculo empresa/veículo
 router.get('/empresa/:empresaId', async (req, res) => {
     try{
         const { empresaId } = req.params;
