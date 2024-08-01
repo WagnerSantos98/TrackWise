@@ -13,22 +13,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.get('/veiculos/:empresaId', async (req, res) => {
-    try{
-        const { empresaId } = req.params;
-        const veiculos = await Veiculo.find({
-            empresaId,
-            status: 'A',
-        }).select('_id titulo');
-
-        res.json({
-            veiculos: veiculos.map((s) => ({ label: s.titulo, value: s._id })),
-        });
-    }catch(err){
-        res.json({ error: true, message: err.message });
-    }
-});
-
 router.get('/:id', async (req, res) => {
     try{
         const empresa = await Empresa.findById(req.params.id).select('capa nome endereco.cidade contato');
