@@ -63,4 +63,29 @@ router.post('/', async (req, res) => {
     
 });
 
+//Rota de retorno de informações do motorista  com vínculo empresa/motorista
+router.get('/empresa/:empresaId', async (req, res) => {
+    try{
+        const { empresaId } = req.params;
+
+        const motoristas = await EmpresaMotorista.find({
+            empresaId,
+            status: { $ne: 'E' }
+        })
+        .populate('motoristaId')
+        .select('motoristaId dataCadastro');
+
+        res.json({
+            error:  false,
+            motoristas: motoristas.map((vinculo) => ({
+                ...vinculo.motoristaId._doc,
+                vinculoId: vinculo._id,
+                dataCadastro: vinculo.dataCadastro
+            }))
+        });
+    }catch(err){
+        res.json({ error: true, message: err.message });
+    }
+});
+
 module.exports = router;
