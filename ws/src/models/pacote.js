@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const generateNumPedido_CodPacote = require('../middlewares/pacoteMiddleware');
 
 const pacote  = new Schema({
     clienteId:{
@@ -21,5 +22,7 @@ const pacote  = new Schema({
         default: Date.now()
     }
 });
+
+pacoteSchema.pre('save', generateNumPedido_CodPacote);
 
 module.exports = mongoose.model('Pacote', pacote);
