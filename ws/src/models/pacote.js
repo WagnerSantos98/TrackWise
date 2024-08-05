@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const generateNumPedido_CodPacote = require('../middlewares/pacoteMiddleware');
 
-const pacote  = new Schema({
-    clienteId:{
+const pacote= new Schema({
+    clienteId: {
         type: mongoose.Types.ObjectId,
         ref: 'Cliente',
         required: true
@@ -12,17 +12,18 @@ const pacote  = new Schema({
     codigoPacote: String,
     pesoPacote: Number,
     qtdItem: Number,
-    status:{
+    status: {
         type: String,
         enum: ['E', 'A', 'C'], // E = Entregue, A = Em Andamento, C = Cancelado
         default: 'A'
     },
-    dataCompra:{
+    dataCompra: {
         type: Date,
-        default: Date.now()
+        default: Date.now
     }
 });
 
-pacoteSchema.pre('save', generateNumPedido_CodPacote);
+// Middleware to automatically generate numeroPedido and codigoPacote
+pacote.pre('save', generateNumPedido_CodPacote);
 
 module.exports = mongoose.model('Pacote', pacote);
