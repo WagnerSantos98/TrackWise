@@ -1,25 +1,26 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const pacote  = new Schema({
-    clienteId:{
+const clientePacote = new Schema({
+    clientId:{
         type: mongoose.Types.ObjectId,
         ref: 'Cliente',
         required: true
     },
-    numeroPedido: Number,
-    codigoPacote: String,
-    pesoPacote: Number,
-    qtdItem: Number,
+    pacoteId:{
+        type: mongoose.Types.ObjectId,
+        ref: 'Pacote',
+        required: true
+    },
     status:{
         type: String,
         enum: ['E', 'A', 'C'], // E = Entregue, A = Em Andamento, C = Cancelado
         default: 'A'
     },
-    dataCompra:{
+    dataCadastro:{
         type: Date,
         default: Date.now()
     }
 });
 
-module.exports = mongoose.model('Pacote', pacote);
+module.exports = mongoose.model('ClientePacote', clientePacote);
