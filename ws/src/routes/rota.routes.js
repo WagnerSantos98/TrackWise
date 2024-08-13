@@ -31,7 +31,7 @@ routes.post('/', async (req, res) => {
         const { veiculoId, motoristaId, clienteId } = req.body;
     
         //Buscar a localização atual do veículo
-        const origem = { latitude: -23.550520, longitude: -46.633308 };
+        const origem = { latitude: -22.958102, longitude: -46.543028 };
 
         //Buscar localização do cliente
         const cliente = await Cliente.findById(clienteId);
@@ -51,7 +51,7 @@ routes.post('/', async (req, res) => {
             pontosParada: rota.legs[0].steps.map(step => ({
                 latitude: step.maneuver.location[1],
                 longitude: step.maneuver.location[0],
-                endereco: step.maneuver.instruction
+                descricao: step.maneuver.instruction
             }))
         });
 
