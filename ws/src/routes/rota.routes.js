@@ -27,31 +27,39 @@ const calcularRota = async (origem, destino) => {
 };
 
 router.post('/', async (req, res) => {
-    const { veiculoId, motoristaId, clienteId } = req.body;
+    try{
+        const { veiculoId, motoristaId, clienteId } = req.body;
     
-    //Buscar a localização atual do veículo
-    const origem = { latitude: -23.550520, longitude: -46.633308 };
+        //Buscar a localização atual do veículo
+        const origem = { latitude: -23.550520, longitude: -46.633308 };
 
-    //Buscar localização do cliente
-    const cliente = await Cliente.findById(clienteId);
-    const destino = { latitude: cliente.endereco.latitude, longitude: cliente.endereco.longitude };
+        //Buscar localização do cliente
+        const cliente = await Cliente.findById(clienteId);
+        const destino = { latitude: cliente.endereco.latitude, longitude: cliente.endereco.longitude };
 
-    //Calcular a rota
-    const rota = await calcularRota(origem, destino);
+        //Calcular a rota
+        const rota = await calcularRota(origem, destino);
 
-    //Salvar a rota no banco de dados
-    const novaRota = new Rota({
-        veiculoId,
-        motoristaId,
-        origem: `${origem.latitude}, `
-        destino:
-        distancia:
-        pontosParada: rota.legs[0].steps.map(step => ({
-            latitude: step.maneuver.location[1],
-            longitude: step.maneuver.location[0],
-            endereco: step.maneuver.instruction
-        }))
-    })
+        //Salvar a rota no banco de dados
+        const novaRota = new Rota({
+            veiculoId,
+            motoristaId,
+            origem: `${origem.latitude}, ${origem.longitude}`,
+            destino: `${destino.latitude}, ${destino.longitude}`, 
+            distancia: rota.distance,
+            pontosParada: rota.legs[0].steps.map(step => ({
+                latitude: step.maneuver.location[1],
+                longitude: step.maneuver.location[0],
+                endereco: step.maneuver.instruction
+            }))
+        });
+
+        const rotaSalva = await novaRota.save();
+        
+        res.json({ rotaSalva });
+    }catch(err){
+        res.json({ error: true, message: err.message });
+    }
 
 });
 
