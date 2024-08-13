@@ -26,7 +26,7 @@ const calcularRota = async (origem, destino) => {
     }
 };
 
-router.post('/', async (req, res) => {
+routes.post('/', async (req, res) => {
     try{
         const { veiculoId, motoristaId, clienteId } = req.body;
     
@@ -47,6 +47,7 @@ router.post('/', async (req, res) => {
             origem: `${origem.latitude}, ${origem.longitude}`,
             destino: `${destino.latitude}, ${destino.longitude}`, 
             distancia: rota.distance,
+            duracao: rota.duration,
             pontosParada: rota.legs[0].steps.map(step => ({
                 latitude: step.maneuver.location[1],
                 longitude: step.maneuver.location[0],
@@ -55,7 +56,7 @@ router.post('/', async (req, res) => {
         });
 
         const rotaSalva = await novaRota.save();
-        
+
         res.json({ rotaSalva });
     }catch(err){
         res.json({ error: true, message: err.message });
