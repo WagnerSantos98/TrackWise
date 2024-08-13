@@ -19,6 +19,7 @@ app.use('/cliente', require('./src/routes/cliente.routes'));
 app.use('/veiculo', require('./src/routes/veiculo.routes'));
 app.use('/motorista', require('./src/routes/motorista.routes'));
 app.use('/rota', require('./src/routes/rota.routes'));
+app.use('/entrega', require('./src/routes/entrega.routes'));
 
 // Lidar com erros de CORS
 app.use((req, res, next) => {
