@@ -16,7 +16,11 @@ const veiculo = new Schema({
         enum: ['A', 'I', 'E'],
         default: 'A'
     },
-    statusManutencao: String,
+    statusManutencao: {
+        type: String,
+        required: true,
+        enum: ['OK', 'A', 'C'], // 'E' = Em dia, 'A' = Agendado, 'C' = Cancelado
+    },
     dataCadastro: {
         type: Date,
         default: Date.now
