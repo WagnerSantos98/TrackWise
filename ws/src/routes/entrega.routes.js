@@ -8,7 +8,7 @@ const ClientePacote = require('../models/relationship/clientePacote');
 router.get('/rastrear/:codigo', async (req, res) => {
     try {
         const { codigo } = req.params;
-
+        
         // Buscar o pacote pelo campo correto
         const pacote = await Pacote.findOne({ codigoPacote: codigo })
             .populate('clienteId', 'nome endereco'); // Populate para retornar dados do cliente
