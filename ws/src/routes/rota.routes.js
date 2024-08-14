@@ -3,6 +3,7 @@ const axios = require('axios');
 const routes = express.Router();
 const Rota = require('../models/rota');
 const Cliente = require('../models/cliente');
+const Pacote = require('../models/pacote');
 
 //Função para calcular a rota
 const calcularRota = async (origem, destino) => {
@@ -26,26 +27,33 @@ const calcularRota = async (origem, destino) => {
     }
 };
 
-routes.post('/', async (req, res) => {
-    try{
-        const { veiculoId, motoristaId, clienteId } = req.body;
-    
-        //Buscar a localização atual do veículo
+// Rota para iniciar percurso de entrega
+routes.post('/iniciar', async (req, res) => {
+    try {
+        const { veiculoId, motoristaId, codigoPacote } = req.body;
+
+        // Buscar o pacote pelo código
+        const pacote = await Pacote.findOne({ codigoPacote });
+        if (!pacote) {
+            return res.json({ error: true, message: 'Pacote não encontrado' });
+        }
+
+        // Buscar a localização atual do veículo
         const origem = { latitude: -22.958102, longitude: -46.543028 };
 
-        //Buscar localização do cliente
-        const cliente = await Cliente.findById(clienteId);
+        // Buscar localização do cliente associado ao pacote
+        const cliente = await Cliente.findById(pacote.clienteId);
         const destino = { latitude: cliente.endereco.latitude, longitude: cliente.endereco.longitude };
 
-        //Calcular a rota
+        // Calcular a rota
         const rota = await calcularRota(origem, destino);
 
-        //Salvar a rota no banco de dados
+        // Salvar a rota no banco de dados
         const novaRota = new Rota({
             veiculoId,
             motoristaId,
             origem: `${origem.latitude}, ${origem.longitude}`,
-            destino: `${destino.latitude}, ${destino.longitude}`, 
+            destino: `${destino.latitude}, ${destino.longitude}`,
             distancia: rota.distance,
             duracao: rota.duration,
             pontosParada: rota.legs[0].steps.map(step => ({
@@ -58,10 +66,9 @@ routes.post('/', async (req, res) => {
         const rotaSalva = await novaRota.save();
 
         res.json({ rotaSalva });
-    }catch(err){
+    } catch (err) {
         res.json({ error: true, message: err.message });
     }
-
 });
 
 module.exports = routes;
