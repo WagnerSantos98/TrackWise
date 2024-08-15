@@ -1,5 +1,16 @@
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+
 const Routes = () => {
-    return <h1>Hello World!</h1>;
+    return(
+        <>
+            <Header/>
+            <div className="container-fluid h-100">
+                <Sidebar/>
+            </div>
+            
+        </>
+    );
 };
 
 export default Routes;
