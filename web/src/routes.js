@@ -5,6 +5,9 @@ import './assets/css/style.css';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 
+import Entregas from './pages/Entregas';
+import Veiculos from './pages/Veiculos';
+
 const App = () => {
     return(
         <>
@@ -14,7 +17,8 @@ const App = () => {
                     <Router>
                         <Sidebar/> 
                         <Routes>
-                            <Route path="/veiculos"/>    
+                            <Route path="/" excat element={<Entregas/>}/>     
+                            <Route path="/veiculos" excat element={<Veiculos/>}/>     
                         </Routes>  
                     </Router>
                 </div>
