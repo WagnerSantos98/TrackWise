@@ -10,6 +10,9 @@ const Header = () =>{
                 <img src={person}/>
                 <span class="mdi mdi-chevron-down text-white"></span>
             </div>
+            <div className="d-flex align-items-center">
+                <span class="mdi mdi-exit-to-app text-white"></span>
+            </div>
         </header>
     );
 }
