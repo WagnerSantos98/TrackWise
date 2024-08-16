@@ -68,12 +68,12 @@ sidebar ul li{
 
 sidebar ul li a{
     width: 100%;
-    text-decoration: none;
-    color: var(--white);
+    color: #fff;
     opacity: 0.6;
+    text-decoration: none;
     display: flex;
     align-items: center;
-    padding: 5px 0;
+    padding: 10px 5px;
     margin: 2.5px 0;
     transition: 0.5s;
     border-radius: 5px;
@@ -91,7 +91,7 @@ sidebar ul li a.active .mdi{
     color: var(--primary-color);
 }
 
-sidebar ul li a.visited,
+sidebar ul li a.visited, 
 sidebar ul li a:focus{
     color: var(--white);
 }

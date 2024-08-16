@@ -3,7 +3,7 @@ import logo from '../../assets/img/logo.png';
 
 const Sidebar = () =>{
     const location = useLocation();
-    
+
     return(
         <sidebar className="col-2 h-100">
            <img src={logo} className="img-fluid px-3 py-4"/>
@@ -15,19 +15,19 @@ const Sidebar = () =>{
                     </Link>
                 </li>
                 <li>
-                    <Link to="/motoristas">
+                    <Link to="/motoristas" className={location.pathname === '/motoristas' ? 'active' : ''}>
                         <span className="mdi mdi-card-account-details"></span>
                         <text>Motoristas</text>
                     </Link>
                 </li>
                 <li>
-                    <Link to="veiculos">
+                    <Link to="veiculos" className={location.pathname === '/veiculos' ? 'active' : ''}>
                         <span className="mdi mdi-car-back"></span>
                         <text>Veículos</text>
                     </Link>
                 </li>
                 <li>
-                    <Link to="rotas">
+                    <Link to="rotas" className={location.pathname === '/rotas' ? 'active' : ''}>
                         <span className="mdi mdi-routes"></span>
                         <text>Rotas</text>
                     </Link>
