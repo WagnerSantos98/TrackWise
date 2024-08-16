@@ -1,13 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/img/logo.png';
 
 const Sidebar = () =>{
+    const location = useLocation();
+    
     return(
         <sidebar className="col-2 h-100">
            <img src={logo} className="img-fluid px-3 py-4"/>
            <ul className="p-0 m-0">
                 <li>
-                    <Link to="/">
+                    <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
                         <span className="mdi mdi-archive-marker"></span>
                         <text>Entregas</text>
                     </Link>
