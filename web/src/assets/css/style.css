@@ -115,3 +115,7 @@ button .btn-primary{
     padding-left: 2.5rem; 
     padding-right: 2.5rem;
 }
+
+.text-body{
+    text-decoration-color: var(--primary-color);
+}

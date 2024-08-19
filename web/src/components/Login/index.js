@@ -37,7 +37,7 @@ const Login = () => {
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
-                        <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg">Login</button>
+                        <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg">Acessar</button>
                     </div>
 
                     </form>
