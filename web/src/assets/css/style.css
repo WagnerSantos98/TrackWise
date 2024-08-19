@@ -109,3 +109,9 @@ sidebar ul li a span.mdi{
 sidebar ul li a text{
     font-size: 14px;
 }
+
+/*Login*/
+button .btn-primary{
+    padding-left: 2.5rem; 
+    padding-right: 2.5rem;
+}
