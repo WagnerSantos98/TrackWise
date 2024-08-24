@@ -62,27 +62,15 @@ git clone https://github.com/WagnerSantos98/TrackWise.git
 cd TrackWise
 ```
 
-2. **Instale as dependências do back-end:**
-```bash
-cd ws
-npm install
-```
+2. **Configure as variáveis de ambiente:**
 
-3. **Instale as dependências do front-end:**
+**Inicie o servidor back-end:**
 ```bash
-cd web
-npm install
-```
-
-4. **Configure as variáveis de ambiente:**
-
-5. **Inicie o servidor back-end:**
-```bash
-cd ws
+cd server
 npm start
 ```
 
-6. **Inicie o servidor front-end:**
+**Inicie o servidor front-end:**
 ```bash
 cd web
 npm start
@@ -113,18 +101,6 @@ npm start
 - POST `/entregas` - Criar um novo entrega
 - PUT `/entregas/:id` - Atualiza um entrega extistente
 - DELETE `/entregas/:id` - Remove um entrega
-
-**Manutenções**
-- GET `/manutacoes` - Lista todos os manutacoes
-- POST `/manutacoes` - Criar um novo manutencao
-- PUT `/manutacoes/:id` - Atualiza um manutencao extistente
-- DELETE `/manutacoes/:id` - Remove um manutencao
-
-**Combustíveis**
-- GET `/combustiveis` - Lista todos os combustíveis
-- POST `/combustiveis` - Criar um novo combustível
-- PUT `/combustiveis/:id` - Atualiza um combustível extistente
-- DELETE `/combustiveis/:id` - Remove um combustível
 
 ## Contato
 
