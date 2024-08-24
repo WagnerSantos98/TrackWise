@@ -1,70 +1,133 @@
-# Getting Started with Create React App
+# Sistema de Gestão de Transportadoras
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Visão Geral
 
-## Available Scripts
+O Sistena de Gestão de Transportadoras é uma aplicação web desenvolvida para facilitar o gerenciamento de veículos, motoristas, rotas, entregas e manutenções de transportadoras. A aplicação também oferece funcionalidades de rastreamento em tempo real e geração de relatórios detalhados.
 
-In the project directory, you can run:
+## Tecnologias Utilizadas
 
-### `npm start`
+- **Front-end**: React.js
+- **Back-end**: Node.js com Express
+- **Banco de Dados**: MongoDB
+- **Autenticação**: JSON Web Tokens (JWT) e Auth
+- **Outras Ferramentas**:  Docker, Git, Github
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Funcionalidades
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **Gestão de Veículos**
+    - Cadastro e edição de veículos.
+    - Monitoramento do status de manutenção.
 
-### `npm test`
+2. **Gestão de Motorista**
+    - Cadastro e edição de motoristas.
+    - Gestão da disponibilidade e histórico de viagens.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. **Gestão de Rotas e Entregas**
+    - Planejamento e otimização de rotas.
+    - Atribuição de entregas a motoristas.
+    - Rastreamento de entregas em tempo real.
 
-### `npm run build`
+4. **Manutenção de Veículos**
+    - Agendamento de manutenções.
+    - Registro de histórico de manutenções.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+5. **Gestão de Combustível**
+    - Registro de abastecimentos.
+    - Monitoramento do consumo de combustível.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+6. **Relatórios e Análises**
+    - Relatórios de desempenho de motoristas e veículos.
+    - Relatórios de eficiência de rotas e entregas.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+7. **notificações e Alertas**
+    - Alertas sobre manutenções programadas.
+    - Notificações sobre status de entregas.
 
-### `npm run eject`
+8. **Autenticação e Controle de Acesso**
+    - Registro e login de usuários.
+    - Controle de acesso baseado em funções (administradores, motoristas, operadores).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Requisitos de Instalção
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Node.js (versão 14 ou superior)
+- MongoDB
+- Docker (opcional, para deploy)
+- Git 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Configurações do Ambiente de Desenvolvimento
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. **Clone o repositório:**
+```bash
+git clone https://github.com/WagnerSantos98/TrackWise.git
+cd TrackWise
+```
 
-## Learn More
+2. **Instale as dependências do back-end:**
+```bash
+cd ws
+npm install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. **Instale as dependências do front-end:**
+```bash
+cd web
+npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. **Configure as variáveis de ambiente:**
 
-### Code Splitting
+5. **Inicie o servidor back-end:**
+```bash
+cd ws
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+6. **Inicie o servidor front-end:**
+```bash
+cd web
+npm start
+```
 
-### Analyzing the Bundle Size
+## Endpoints da API
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**Veículos**
+- GET `/veiculos` - Lista todos os veículos
+- POST `/veiculos` - Criar um novo veículo
+- PUT `/veiculos/:id` - Atualiza um veículo extistente
+- DELETE `/veiculos/:id` - Remove um veículo
 
-### Making a Progressive Web App
+**Motoristas**
+- GET `/motoristas` - Lista todos os motoristas
+- POST `/motoristas` - Criar um novo motorista
+- PUT `/motoristas/:id` - Atualiza um motorista extistente
+- DELETE `/motoristas/:id` - Remove um motorista
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Rotas**
+- GET `/rotas` - Lista todos os rotas
+- POST `/rotas` - Criar um novo rota
+- PUT `/rotas/:id` - Atualiza um rota extistente
+- DELETE `/rotas/:id` - Remove um rota
 
-### Advanced Configuration
+**Entregas**
+- GET `/entregas` - Lista todos os entregas
+- POST `/entregas` - Criar um novo entrega
+- PUT `/entregas/:id` - Atualiza um entrega extistente
+- DELETE `/entregas/:id` - Remove um entrega
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**Manutenções**
+- GET `/manutacoes` - Lista todos os manutacoes
+- POST `/manutacoes` - Criar um novo manutencao
+- PUT `/manutacoes/:id` - Atualiza um manutencao extistente
+- DELETE `/manutacoes/:id` - Remove um manutencao
 
-### Deployment
+**Combustíveis**
+- GET `/combustiveis` - Lista todos os combustíveis
+- POST `/combustiveis` - Criar um novo combustível
+- PUT `/combustiveis/:id` - Atualiza um combustível extistente
+- DELETE `/combustiveis/:id` - Remove um combustível
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Contato
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Autor: Wagner Santos de Jesus
+- Email: wagner.jesus98@outlook.com
+- LinkedIn: https://www.linkedin.com/in/wagnersjesus/
